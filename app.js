@@ -57,27 +57,21 @@ const typed = new Typed('.multiple', {
     loop: true
 });
 
-
-(function(){
-    emailjs.init("TA_PUBLIC_KEY"); // clé public a mettre ici
-})();
-
-// Gestion du formulaire de contact
+// Gestion du formulaire de contact 
 document.getElementById('contact-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Empêche le rechargement de la page
 
     // Récupérer les valeurs des champs
     const templateParams = {
-        from_name: document.getElementById('name').value,
-        from_email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value,
-        to_email: "nicolascheel77950@gmail.com" 
+        name: document.getElementById('name').value, 
+        title: document.getElementById('subject').value, 
+        message: document.getElementById('message').value,     
+        email: document.getElementById('email').value, 
+        phone: document.getElementById('phone').value 
     };
 
     // Envoyer l'email via EmailJS
-    emailjs.send('service_zengisk', 'TON_TEMPLATE_ID', templateParams)
+    emailjs.send('service_2engisk', 'template_qgfr4o4', templateParams) 
         .then(function(response) {
             const formMessage = document.getElementById('form-message');
             formMessage.innerHTML = 'Message envoyé avec succès !';
@@ -85,12 +79,11 @@ document.getElementById('contact-form').addEventListener('submit', function(even
             document.getElementById('contact-form').reset(); 
         }, function(error) {
             const formMessage = document.getElementById('form-message');
-            formMessage.innerHTML = 'Erreur lors de l\'envoi du message.';
+            formMessage.innerHTML = `Erreur : ${error.text || 'Problème inconnu.'}`;
             formMessage.classList.add('error');
-            console.log('Erreur:', error);
+            console.log('Erreur complète:', error);
         });
 });
-
 
 menuIcon.addEventListener('click', burgerActive);
 window.addEventListener('scroll', scrollActive);
