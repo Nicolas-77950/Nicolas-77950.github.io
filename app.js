@@ -1,4 +1,4 @@
-// app.js
+emailjs.init("Ow6_lPNA0M0Xn_2gY");
 
 // Sélection des éléments
 const sections = document.querySelectorAll('section');
@@ -57,9 +57,9 @@ const typed = new Typed('.multiple', {
     loop: true
 });
 
-// Gestion du formulaire de contact 
+// Gestion du formulaire de contact (mise à jour)
 document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Empêche le rechargement de la page
+    event.preventDefault(); 
 
     // Récupérer les valeurs des champs
     const templateParams = {
@@ -67,9 +67,9 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         title: document.getElementById('subject').value, 
         message: document.getElementById('message').value,     
         email: document.getElementById('email').value, 
-        phone: document.getElementById('phone').value 
+        phone: document.getElementById('phone').value,
+        to_email: "nicolascheel77950@gmail.com" 
     };
-
     // Envoyer l'email via EmailJS
     emailjs.send('service_2engisk', 'template_qgfr4o4', templateParams) 
         .then(function(response) {
