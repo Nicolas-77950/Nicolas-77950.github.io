@@ -71,18 +71,19 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         to_email: "nicolascheel77950@gmail.com" 
     };
     // Envoyer l'email via EmailJS
-    emailjs.send('service_2engisk', 'template_qgfr4o4', templateParams) 
-        .then(function(response) {
-            const formMessage = document.getElementById('form-message');
-            formMessage.innerHTML = 'Message envoyé avec succès !';
-            formMessage.classList.remove('error');
-            document.getElementById('contact-form').reset(); 
-        }, function(error) {
-            const formMessage = document.getElementById('form-message');
-            formMessage.innerHTML = `Erreur : ${error.text || 'Problème inconnu.'}`;
-            formMessage.classList.add('error');
-            console.log('Erreur complète:', error);
-        });
+    emailjs.send('service_2engisk', 'template_qgfr4o4', templateParams)
+    .then(function(response) {
+        console.log('Succès :', response.status, response.text);
+        const formMessage = document.getElementById('form-message');
+        formMessage.innerHTML = 'Message envoyé avec succès !';
+        formMessage.classList.remove('error');
+        document.getElementById('contact-form').reset();
+    }, function(error) {
+        console.log('Erreur détaillée :', error);
+        const formMessage = document.getElementById('form-message');
+        formMessage.innerHTML = `Erreur : ${error.text || 'Problème inconnu.'}`;
+        formMessage.classList.add('error');
+    });
 });
 
 menuIcon.addEventListener('click', burgerActive);
